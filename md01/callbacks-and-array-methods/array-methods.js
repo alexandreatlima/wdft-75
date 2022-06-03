@@ -21,39 +21,39 @@ const arr = [
 
 // Escrever a função que vai ser passada como callback antes de invocar map
 
-function getBig(currentElement) {
-  // O valor de retorno da callback do map é o elemento novo que sera guardado no newArr
-  return currentElement.toUpperCase();
-}
+// function getBig(currentElement) {
+//   // O valor de retorno da callback do map é o elemento novo que sera guardado no newArr
+//   return currentElement.toUpperCase();
+// }
 
-const newArr = arr.map(getBig);
+// const newArr = arr.map(getBig);
 
-console.log(newArr);
+// console.log(newArr);
 
-console.log(arr);
+// console.log(arr);
 
-function exemploDeCoisaQueDaRuim(currentElement) {
-  if (currentElement === "Alexandre") {
-    return currentElement;
-  }
-}
+// function exemploDeCoisaQueDaRuim(currentElement) {
+//   if (currentElement === "Alexandre") {
+//     return currentElement;
+//   }
+// }
 
-console.log(arr.map(exemploDeCoisaQueDaRuim));
+// console.log(arr.map(exemploDeCoisaQueDaRuim));
 
 // Exemplo que mais vou usar na aula, e muito comum no mercado
 // Escrevendo a callback "na hora"
 
-const arrMod = arr.map((currentElement) => currentElement.toUpperCase());
+// const arrMod = arr.map((currentElement) => currentElement.toUpperCase());
 
-const arrMod2 = arr.map((currentElement) => {
-  if (currentElement.length % 2 === 0) {
-    return "É par.";
-  }
+// const arrMod2 = arr.map((currentElement) => {
+//   if (currentElement.length % 2 === 0) {
+//     return "É par.";
+//   }
 
-  return "É impar.";
-});
+//   return "É impar.";
+// });
 
-console.log(arrMod2);
+// console.log(arrMod2);
 
 // Parametros da callback do map
 
@@ -61,11 +61,11 @@ console.log(arrMod2);
 // index do elemento atual
 // array original
 
-const arrMod3 = arr.map((currentElement, i, array) => {
-  console.log(currentElement, i, array);
-});
+// const arrMod3 = arr.map((currentElement, i, array) => {
+//   console.log(currentElement, i, array);
+// });
 
-console.log(arrMod3);
+// console.log(arrMod3);
 
 const movies = [
   {
@@ -410,33 +410,103 @@ const movies = [
   },
 ];
 
-// Uma nova array com apenas o titulo do filme, so a string do titulo do filme
+// // Uma nova array com apenas o titulo do filme, so a string do titulo do filme
 
-const arrTitles = movies.map((currentElement, i) => {
-  return currentElement.original_title;
-});
+// const arrTitles = movies.map((currentElement, i) => {
+//   return currentElement.original_title;
+// });
 
-console.log(arrTitles);
+// console.log(arrTitles);
 
-// Uma nova array com um objeto que tem o titulo do filme e overview
+// // Uma nova array com um objeto que tem o titulo do filme e overview
 
-const arrTitleAndOverview = movies.map((dinossauro) => {
-  return {
-    original_title: dinossauro.original_title,
-    overview: dinossauro.overview,
-  };
-});
+// const arrTitleAndOverview = movies.map((dinossauro) => {
+//   return {
+//     original_title: dinossauro.original_title,
+//     overview: dinossauro.overview,
+//   };
+// });
 
-console.log(arrTitleAndOverview);
+// console.log(arrTitleAndOverview);
 
-// Uma nova array vai ter strings dizendo `O filme é bom: ${nomeDoFilme}` se o filme tiver nota maior que 7, se for menor que set retorna `O filme é ruim: ${nomeDoFilme}`
+// // Uma nova array vai ter strings dizendo `O filme é bom: ${nomeDoFilme}` se o filme tiver nota maior que 7, se for menor que set retorna `O filme é ruim: ${nomeDoFilme}`
 
-const moviesAvaliations = movies.map((batatinha) => {
-  if (batatinha.vote_average >= 7) {
-    return `O filme é bom: ${batatinha.original_title}`;
+// const moviesAvaliations = movies.map((batatinha) => {
+//   if (batatinha.vote_average >= 7) {
+//     return `O filme é bom: ${batatinha.original_title}`;
+//   }
+
+//   return `O filme é ruim: ${batatinha.original_title}`;
+// });
+
+// console.log(moviesAvaliations);
+
+// Filter
+
+// Ele retorna uma nova array onde ele vai guardar elementos da array original caso esse currentElement passe numa condição
+// Ele tem um loop interno que passa por todos os elementos do array e guarda na nova array os elementos que retornarem true da condição escrita
+// O filter PODE RETORNAR UM ARRAY MENOR OU DE MESMO TAMANHO DO ORIGINAL
+// Ele tbm retorna um novo array e não altera o array original
+// Sempre precisa receber uma callback como parametro
+
+const nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+function getBiggers(elemento) {
+  // Para uma função funcionar como callback do filter, ela precisa retornar true ou false (ou seja, um booleano)
+
+  return elemento >= 5;
+}
+
+const newArrFiltred = nums.filter(getBiggers);
+
+console.log(newArrFiltred);
+
+// Escrevendo a callback do filter na hora
+
+const newArrFiltred2 = nums.filter((currentElement) => {
+  if (currentElement === 8) {
+    return false;
   }
 
-  return `O filme é ruim: ${batatinha.original_title}`;
+  return currentElement % 2 === 0;
 });
 
-console.log(moviesAvaliations);
+console.log(newArrFiltred2);
+
+// Menor ainda
+
+const newArrFiltred3 = nums.filter(
+  (currentElement) => currentElement % 2 !== 0
+);
+
+// Retornar uma nova array com apenas os filmes que tem nota 7.5 ou mais
+
+const bestMovies = movies.filter((currentMovie) => {
+  return currentMovie.vote_average > 7.5;
+});
+
+console.log("melhores filmes", bestMovies);
+
+// Retornar uma nova array que tenha apenas filmes lançados depois de 01/2022
+
+const movies2022 = movies.filter((currentMovie) => {
+  // const year = currentMovie.release_date.slice(0, 4);
+
+  // return year === "2022";
+
+  // return currentMovie.release_date.startsWith("2022");
+
+  return currentMovie.release_date.includes("2022");
+});
+
+console.log(movies2022);
+
+// Retornar uma array com os filmes que tenham nota maior que 7.5 E apenas o titulos
+
+const bestMoviesTitle = movies
+  .filter((currentMovie) => {
+    return currentMovie.vote_average >= 7.5;
+  })
+  .map((currentElement) => currentElement.original_title);
+
+console.log(bestMoviesTitle);
