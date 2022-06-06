@@ -2,7 +2,7 @@ console.log("Salve!");
 
 // Fazendo coisas aparecerem na tela
 
-const guardandoMinhaDivAqui = document.getElementById("show-screen");
+// const guardandoMinhaDivAqui = document.getElementById("show-screen");
 
 // const name = [1, "Nome", false];
 
@@ -164,13 +164,13 @@ const users = ["Alexandre", "Adriano", "Jino", "Felipe", "Daniel", "angelo"];
 
 // Como a gente consegue saber qual é a primeira letra de uma string?
 
-const exStr = "Alexandre";
+// const exStr = "Alexandre";
 
-console.log(exStr[0]);
+// console.log(exStr[0]);
 
 // Como a gente olha o primeiro elemento de um array?
 
-console.log(users[0]);
+// console.log(users[0]);
 
 // length e includes funcionam em String e Arrays
 
@@ -182,12 +182,88 @@ console.log(users[0]);
 //   }
 // }
 
-for (let i = 0; i < users.length; i++) {
-  if (users[i].toLowerCase().includes("a")) {
-    console.log(users[i]);
-  }
-}
+// for (let i = 0; i < users.length; i++) {
+//   if (users[i].toLowerCase().includes("a")) {
+//     console.log(users[i]);
+//   }
+// }
 
 const includesEx = "Taty";
 
 console.log(users.includes(includesEx));
+
+const array = ["A", "l", "e", "x"];
+
+const newArr = array.join(" ").toUpperCase();
+
+console.log(newArr);
+
+let newStr = "";
+
+for (let i = 0; i < array.length; i++) {
+  if (i === array.length - 1) {
+    newStr = newStr + array[i];
+  } else {
+    newStr = newStr + array[i] + " ";
+  }
+}
+
+console.log(newStr.trim());
+
+const loremText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin ullamcorper odio id tempus. Sed fringilla blandit efficitur. Mauris in ornare nisi. Suspendisse sed ultrices nibh. Quisque quam risus, auctor in orci consequat, finibus vulputate dolor. Nunc eget mi nec felis porta tempus in hendrerit sem. Nunc a consequat enim. Morbi semper sed quam at ornare. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae
+Suspendisse sed mattis nunc. Etiam volutpat, justo nec lobortis imperdiet, ipsum ipsum consequat sapien, eget mattis elit mauris sed nibh. Proin vehicula odio eget placerat ultrices. Sed eget accumsan odio. Phasellus ultrices faucibus dictum. Nullam eget sapien id dui laoreet tincidunt ac eget sapien. Mauris sed ligula pulvinar arcu fermentum sagittis ut eu lectus. Phasellus tincidunt ipsum odio, nec eleifend leo consectetur vitae. Nam aliquam orci et placerat accumsan. Etiam eu ipsum ultrices dolor congue fermentum. Nullam euismod enim quis enim pretium ornare eget quis ligula.
+Donec vitae interdum libero. Nam ac ipsum sed magna lacinia consequat eu eget ante. Cras egestas tortor at felis mattis, nec sodales mauris sagittis. Fusce mi lorem, semper ut magna ac, dictum viverra libero. Maecenas egestas porta gravida. Vestibulum vel erat ex. Nulla tincidunt ligula non eros vestibulum, sed gravida neque egestas. Quisque imperdiet feugiat lectus et viverra.`;
+
+const exemplo = "Alexandre";
+
+function wordCounter(loremText) {
+  // let counter = 0;
+  // for (i=0 ; i<loremText.length ; i++) {
+  //     loremText[i] = counter++;
+  // }
+  return loremText.length;
+}
+
+console.log(wordCounter(exemplo));
+
+function findEt(loremText) {
+  //     let lorem = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin ullamcorper odio id tempus. Sed fringilla blandit efficitur. Mauris in ornare nisi. Suspendisse sed ultrices nibh. Quisque quam risus, auctor in orci consequat, finibus vulputate dolor. Nunc eget mi nec felis porta tempus in hendrerit sem. Nunc a consequat enim. Morbi semper sed quam at ornare. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae
+  // Suspendisse sed mattis nunc. Etiam volutpat, justo nec lobortis imperdiet, ipsum ipsum consequat sapien, eget mattis elit mauris sed nibh. Proin vehicula odio eget placerat ultrices. Sed eget accumsan odio. Phasellus ultrices faucibus dictum. Nullam eget sapien id dui laoreet tincidunt ac eget sapien. Mauris sed ligula pulvinar arcu fermentum sagittis ut eu lectus. Phasellus tincidunt ipsum odio, nec eleifend leo consectetur vitae. Nam aliquam orci et placerat accumsan. Etiam eu ipsum ultrices dolor congue fermentum. Nullam euismod enim quis enim pretium ornare eget quis ligula.
+  // Donec vitae interdum libero. Nam ac ipsum sed magna lacinia consequat eu eget ante. Cras egestas tortor at felis mattis, nec sodales mauris sagittis. Fusce mi lorem, semper ut magna ac, dictum viverra libero. Maecenas egestas porta gravida. Vestibulum vel erat ex. Nulla tincidunt ligula non eros vestibulum, sed gravida neque egestas. Quisque imperdiet feugiat lectus et viverra.`
+  let etCounter = 0;
+  for (i = 0; i < loremText.length; i++) {
+    const e = loremText[i];
+    const t = loremText[i + 1];
+    if (e === "e" && t === "t") {
+      etCounter++;
+    }
+  }
+  return etCounter;
+}
+console.log(findEt(loremText));
+
+let phraseToCheck = "";
+function palindromeCheck(phraseToCheck) {
+  // if (phraseToCheck.length/2 === phraseToCheck.slice(phraseToCheck))
+  if (
+    phraseToCheck.slice(0, phraseToCheck.length - 1 / 2).toLowerCase() ===
+    phraseToCheck
+      .split("")
+      .reverse()
+      .join("")
+      .slice(0, phraseToCheck.length - 1 / 2)
+      .toLowerCase()
+  ) {
+    return `${phraseToCheck} is a Palindrome`;
+  } else {
+    return `${phraseToCheck} is not a Palindrome`;
+  }
+}
+console.log(palindromeCheck("Anna"));
+
+const exm = "Alexandre";
+
+const pedacin = exm.slice(2, 6);
+
+console.log(pedacin);
+console.log(exm);
