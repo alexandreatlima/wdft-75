@@ -1,71 +1,4 @@
-// Map
-
-// É um metodo que tem um loop interno, esse loop já vem preparado para passar por todos os elementos desse array
-
-const arr = [
-  "Alexandre",
-  "Anna",
-  "Karen",
-  "Adriano",
-  "Daniel",
-  "Jino",
-  "Felipe",
-  "Flavia",
-];
-
-// O map NÃO ALTERA A ARRAY ORIGINAL
-// Ele retorna uma NOVA ARRAY, e a gente pode guardar essa array dentro de uma nova variavel
-// SEMPRE RETORNA UMA ARRAY DO MESMO TAMANHO DA ORIGINAL
-
-// Exemplo de uso: quero fazer algo (a mesma coisa) em todos os elementos do array
-
-// Escrever a função que vai ser passada como callback antes de invocar map
-
-// function getBig(currentElement) {
-//   // O valor de retorno da callback do map é o elemento novo que sera guardado no newArr
-//   return currentElement.toUpperCase();
-// }
-
-// const newArr = arr.map(getBig);
-
-// console.log(newArr);
-
-// console.log(arr);
-
-// function exemploDeCoisaQueDaRuim(currentElement) {
-//   if (currentElement === "Alexandre") {
-//     return currentElement;
-//   }
-// }
-
-// console.log(arr.map(exemploDeCoisaQueDaRuim));
-
-// Exemplo que mais vou usar na aula, e muito comum no mercado
-// Escrevendo a callback "na hora"
-
-const arrMod = arr.map((currentElement) => currentElement.toUpperCase());
-
-// const arrMod2 = arr.map((currentElement) => {
-//   if (currentElement.length % 2 === 0) {
-//     return "É par.";
-//   }
-
-//   return "É impar.";
-// });
-
-// console.log(arrMod2);
-
-// Parametros da callback do map
-
-// currentElement - Elemento atual
-// index do elemento atual
-// array original
-
-// const arrMod3 = arr.map((currentElement, i, array) => {
-//   console.log(currentElement, i, array);
-// });
-
-// console.log(arrMod3);
+// CONSOLE.LOG E DOCUMENTAÇÃO ALL THE F... TIME!
 
 const movies = [
   {
@@ -410,137 +343,116 @@ const movies = [
   },
 ];
 
-// // Uma nova array com apenas o titulo do filme, so a string do titulo do filme
+// SORT E REDUCE
 
-// const arrTitles = movies.map((currentElement, i) => {
-//   return currentElement.original_title;
-// });
+// AMBOS RECEBEM UMA CALLBACK COMO 1º PARAMETRO
 
-// console.log(arrTitles);
+// SORT => ORDENAR ARRAYS DE MANEIRA CRESCENTE OU DECRESCENTE
+// FUNCIONA PARA STRING? SIM, POREM VEJA BEM ...
 
-// // Uma nova array com um objeto que tem o titulo do filme e overview
+const nums = [56, 78, 12, 24, 75, 90, 118, 210, 48];
 
-// const arrTitleAndOverview = movies.map((dinossauro) => {
-//   return {
-//     original_title: dinossauro.original_title,
-//     overview: dinossauro.overview,
-//   };
-// });
+const names = [
+  "Alexandre",
+  "Anna",
+  "Karen",
+  "Adriano",
+  "Caio",
+  "Flavia",
+  "Mauricio",
+];
 
-// console.log(arrTitleAndOverview);
+// Ordenando do menor pro maior - NUMEROS
 
-// // Uma nova array vai ter strings dizendo `O filme é bom: ${nomeDoFilme}` se o filme tiver nota maior que 7, se for menor que set retorna `O filme é ruim: ${nomeDoFilme}`
-
-// const moviesAvaliations = movies.map((batatinha) => {
-//   if (batatinha.vote_average >= 7) {
-//     return `O filme é bom: ${batatinha.original_title}`;
-//   }
-
-//   return `O filme é ruim: ${batatinha.original_title}`;
-// });
-
-// console.log(moviesAvaliations);
-
-// Filter
-
-// Ele retorna uma nova array onde ele vai guardar elementos da array original caso esse currentElement passe numa condição
-// Ele tem um loop interno que passa por todos os elementos do array e guarda na nova array os elementos que retornarem true da condição escrita
-// O filter PODE RETORNAR UM ARRAY MENOR OU DE MESMO TAMANHO DO ORIGINAL
-// Ele tbm retorna um novo array e não altera o array original
-// Sempre precisa receber uma callback como parametro
-
-const nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-function getBiggers(elemento) {
-  // Para uma função funcionar como callback do filter, ela precisa retornar true ou false (ou seja, um booleano)
-
-  return elemento >= 5;
-}
-
-const newArrFiltred = nums.filter(getBiggers);
-
-console.log(newArrFiltred);
-
-// Escrevendo a callback do filter na hora
-
-const newArrFiltred2 = nums.filter((currentElement) => {
-  if (currentElement === 8) {
-    return false;
-  }
-
-  return currentElement % 2 === 0;
+const mapedArr = movies.map((currentElement) => {
+  return currentElement.vote_average;
 });
 
-console.log(newArrFiltred2);
-
-// Menor ainda
-
-const newArrFiltred3 = nums.filter(
-  (currentElement) => currentElement % 2 !== 0
-);
-
-// Retornar uma nova array com apenas os filmes que tem nota 7.5 ou mais
-
-const bestMovies = movies.filter((currentMovie) => {
-  return currentMovie.vote_average > 7.5;
-});
-
-console.log("melhores filmes", bestMovies);
-
-// Retornar uma nova array que tenha apenas filmes lançados depois de 01/2022
-
-const movies2022 = movies.filter((currentMovie) => {
-  // const year = currentMovie.release_date.slice(0, 4);
-
-  // return year === "2022";
-
-  // return currentMovie.release_date.startsWith("2022");
-
-  return currentMovie.release_date.includes("2022");
-});
-
-console.log(movies2022);
-
-// Retornar uma array com os filmes que tenham nota maior que 7.5 E apenas o titulos
-
-const bestMoviesTitle = movies
-  .filter((currentMovie) => {
-    return currentMovie.vote_average >= 7.5;
-  })
-  .map((currentElement) => currentElement.original_title);
-
-console.log(bestMoviesTitle);
-
-function dep(par1, par2) {
-  if (par2 === undefined) {
-    return par1 * 2;
-  } else {
-    return par1 * par2;
-  }
-}
-
-console.log(dep(10, 50));
-
-// Ex Adriano
-
-const arrNums = [10, 50, 25, 42, 50, 102, 45];
-
-const sprdArr = [...arrNums];
-
-const newArrNums = sprdArr.sort((a, b) => {
+nums.sort((a, b) => {
+  console.log("a = ", a);
+  console.log("b =", b);
+  console.log("a-b =", a - b);
   return a - b;
 });
 
-console.log(newArrNums);
+// a = elemento atual
+// b = prox elemento
 
-const filterNumsArr = newArrNums.filter((currentElement, i, array) => {
-  return currentElement === array[i + 1];
+// a - b < 0 === a é menor que b
+// a - b = 0 === a é igual a b
+// a - b > 0 === a é maior que b
+
+// PORQUE O SORT ALTERA A ARRAY ORIGINAL!
+
+// Como fugimos de alterar a array original?
+// Clonamos ela e usamos o sort no clone
+
+const clone = [...nums];
+
+function sortArr(arr) {
+  const clone = [...arr];
+  clone.sort((a, b) => a - b);
+
+  return clone;
+}
+
+const sortedArr = sortArr(nums);
+
+console.log(nums);
+
+// Ordenando os filmes pela nota
+
+const perVote = [...movies].sort((a, b) => {
+  return a.vote_average - b.vote_average;
 });
 
-console.log(filterNumsArr);
+const perName = [...movies].sort((a, b) => {
+  // console.log(a.original_title.localeCompare(b.original_title));
+  return a.original_title.localeCompare(b.original_title);
+});
 
-console.log(arrNums.indexOf([filterNumsArr[0]]));
+console.log(perName);
 
-console.log(arrNums);
+// Reduce
 
-console.log(filterNumsArr[0]);
+// Reduzir um array a um unico elemento
+
+// .reduce(callback, valorInicialDoAcumulador)
+
+// .reduce(() => {}, segundoParametro)
+
+// A callback do reduce recebe: o acumulador e currentElement
+const reducedNums = nums.reduce((acc, currentElement) => {
+  return acc + currentElement;
+}, 0);
+
+console.log(reducedNums);
+console.log(typeof reducedNums);
+
+// const listNames = movies.reduce((acc, currentElement) => {
+//   return acc.concat(currentElement.original_title);
+// }, []);
+
+// console.log(listNames);
+
+// Media dos votos
+
+const avg =
+  movies.reduce((acc, currentElement) => acc + currentElement.vote_average, 0) /
+  movies.length;
+
+// Total de votos
+const totalVotes = movies.reduce(
+  (acc, currentElement) => acc + currentElement.vote_count,
+  0
+);
+
+console.log(avg, totalVotes);
+
+const listOfTitles = movies
+  .reduce((acc, currentElement) => {
+    return acc.concat(currentElement.original_title);
+  }, [])
+  .sort((a, b) => a.localeCompare(b));
+
+console.log(listOfTitles);
