@@ -54,10 +54,9 @@ class Characters {
 
 class PlayableChar extends Characters {
   constructor(name, hp, power, powerPerLevel, xpCap) {
-    super();
+    super(name, hp, power);
     this.powerPerLevel = powerPerLevel;
     this.xpCap = xpCap;
-    this.power = power * 2;
   }
 }
 
