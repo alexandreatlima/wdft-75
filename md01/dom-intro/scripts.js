@@ -5,6 +5,37 @@ console.log(document);
 const pageTitle = document.getElementsByTagName("h1");
 const text = document.getElementById("text");
 
+// Pegando o valor do atributo src do elemento html "exemplo"
+const exemplo = document.getElementById("exemplo");
+console.log(exemplo.getAttribute("src"));
+
+exemplo.setAttribute("id", "mudando-o-id-da-imagem-como-exemplo");
+
+// Trabalhando com classes
+console.log(exemplo.classList);
+
+exemplo.classList.add("alguma-coisa");
+
+console.log(exemplo.classList);
+
+exemplo.classList.remove("trabalhando-com-classes");
+
+console.log(exemplo.classList);
+
+// exemplo.classList.toggle("classe-toggle");
+// exemplo.classList.toggle("alguma-coisa");
+
+const buttonShuffle = document.getElementById("shuffle-img");
+
+buttonShuffle.addEventListener("click", () => {
+  exemplo.classList.toggle("show");
+  exemplo.classList.toggle("hidden");
+});
+
+console.log(exemplo.classList.contains("alguma-coisa"));
+
+console.log(exemplo.classList);
+
 console.log(pageTitle);
 
 console.log(text);
