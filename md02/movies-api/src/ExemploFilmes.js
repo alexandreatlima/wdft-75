@@ -12,6 +12,8 @@ export function ExemploFilmes() {
           "https://api.themoviedb.org/3/discover/movie?api_key=1dbc566a4812e099606bf66f83159d6e&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate"
         );
 
+        console.log(response);
+
         setMovies(response.data.results);
       } catch (error) {
         console.log(error);
