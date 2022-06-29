@@ -1,10 +1,15 @@
 import { CreateTraining } from "./pages/CreateTraining";
+import { Home } from "./pages/Home";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <CreateTraining />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/create-training" element={<CreateTraining />} />
+      </Routes>
+    </>
   );
 }
 
