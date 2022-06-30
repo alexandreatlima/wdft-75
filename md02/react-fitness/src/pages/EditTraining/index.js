@@ -1,10 +1,12 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Toaster, toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-export function CreateTraining() {
+export function EditTraining() {
   const navigate = useNavigate();
+
+  const { id } = useParams();
 
   const [form, setForm] = useState({
     owner: "",
@@ -32,6 +34,23 @@ export function CreateTraining() {
   });
 
   console.log(form, trainingByDay, exercise);
+
+  useEffect(() => {
+    async function fetchTraining() {
+      try {
+        const response = await axios.get(
+          `https://ironrest.herokuapp.com/react-fitness/${id}`
+        );
+
+        setForm({ ...response.data });
+        setTrainingByDay({ ...response.data.weekWorkout });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    fetchTraining();
+  }, [id]);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -70,7 +89,14 @@ export function CreateTraining() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await axios.post("https://ironrest.herokuapp.com/react-fitness", form);
+      const clone = { ...form };
+
+      delete clone._id;
+
+      await axios.put(
+        `https://ironrest.herokuapp.com/react-fitness/${id}`,
+        clone
+      );
 
       navigate("/");
     } catch (err) {
@@ -83,7 +109,7 @@ export function CreateTraining() {
       <div>
         <Toaster />
       </div>
-      <h1>Crie o seu treino:</h1>
+      <h1>Edite seu treino:</h1>
 
       <form onSubmit={handleSubmit} className="d-flex flex-column">
         <div className="d-flex flex-column m-5">
@@ -194,7 +220,7 @@ export function CreateTraining() {
             </button>
           </div>
           <button className="btn btn-primary" type="submit">
-            Enviar
+            Editar
           </button>
         </div>
       </form>
