@@ -47,7 +47,13 @@ app.put("/edit/:id", (req, res) => {
 app.delete("/delete/:id", (req, res) => {
   const { id } = req.params;
 
-  // DEVER DE CASA!
+  const document = data.filter((currentDocument) => currentDocument.id === id);
+
+  const index = data.indexOf(document[0]);
+
+  data.splice(index, 1);
+
+  return res.status(200).json(data);
 });
 
 app.listen(4000, () => {
