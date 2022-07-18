@@ -1,6 +1,7 @@
 const { Schema, model, Types } = require("mongoose");
 
 const memorySchema = new Schema({
+  owner: { type: Types.ObjectId, ref: "User" },
   title: { type: String, required: true, trim: true, maxLength: 64 },
   description: { type: String, maxLength: 144 },
   date: { type: String },

@@ -7,6 +7,9 @@ const app = express();
 
 app.use(express.json());
 
+const userRouter = require("./routes/users.routes");
+app.use("/user", userRouter);
+
 const memoryRouter = require("./routes/memories.routes");
 app.use("/memory", memoryRouter);
 

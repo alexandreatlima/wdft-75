@@ -2,11 +2,19 @@ const router = require("express").Router();
 const AlbumModel = require("../models/Album.model");
 const MemoryModel = require("../models/Memory.model");
 
+const isAuth = require("../middlewares/isAuth");
+const attachCurrentUser = require("../middlewares/attachCurrentUser");
+
 // CREATE
 
-router.post("/create-album", async (req, res) => {
+router.post("/create-album", isAuth, attachCurrentUser, async (req, res) => {
   try {
-    const createdAlbum = await AlbumModel.create(req.body);
+    const createdAlbum = await AlbumModel.create({
+      ...req.body,
+      owner: req.currentUser._id,
+    });
+
+    // Falta colocar o id do Album dentro do User ... usem a criatividade :)
 
     return res.status(201).json(createdAlbum);
   } catch (err) {
